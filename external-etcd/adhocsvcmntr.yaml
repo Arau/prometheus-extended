@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: adhoc-etcd
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 5s
+    port: "metrics"
+    targetPort: 2379
+  jobLabel: adhoc-etcd
+  namespaceSelector:
+    matchNames:
+    - etcd
+  selector:
+    matchLabels:
+      cluster: "adhoc"

@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: monitoring
+  annotations:
+    nginx.ingress.kubernetes.io/proxy‑read‑timeout: 1800
+    nginx.ingress.kubernetes.io/proxy‑send‑timeout: 1800
+spec:
+  rules:
+  - host: t6.grafana
+    http:
+      paths:
+      - backend:
+          serviceName: grafana
+          servicePort: 3000
+        path: /
+

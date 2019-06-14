@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: stos-etcd
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 15s
+    port: "client"
+    targetPort: 2379
+  jobLabel: stos-etcd
+  namespaceSelector:
+    matchNames:
+    - etcd
+  selector:
+    matchLabels:
+      cluster: "storageos"
